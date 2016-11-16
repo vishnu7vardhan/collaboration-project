@@ -1,0 +1,262 @@
+<section id="feature" class="transparent-bg">
+        
+			<div class="container">
+
+<div>
+    
+    
+    <br>
+     <br>
+      <br>
+       <br>
+        <br>
+         <br>
+         <hr>
+    <button type="button" class="btn btn-info btn-lg pull-right" data-toggle="modal" data-target="#myModal">Add New Forum</button>
+    <h2>All Forums</h2>
+    <font color="blue">
+    <span class="clearfix"></span>
+    </hr>
+    <hr>
+    </hr>
+    <table class="table table-striped">
+    <thead>
+      <tr>
+      <th>forumId</th>
+        <th>Name</th>
+        <th>Topic</th>
+        <th>Description</th>
+        <th>Date</th>
+         <!-- <th>PostedBy</th> -->
+        <!--   <th>category</th> -->
+          <th>View</th>
+          <!-- <th>Delete</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="forum in forums">
+      <td>{{forum.forumId}}</td>
+        <td>{{forum.name}}</td>
+        <td>{{forum.topic}}</td>
+         <td>{{forum.content}}</td>
+        <td>{{forum.dateOfCreation}}</td>
+        <!-- <td>{{forum.usersID}}</td>
+         <td>{{forum.category}}</td> -->
+        <td><button type="button" class="btn btn-primary btn-sm "  data-toggle="modal" data-target="#editforum" ng-click="editForum(forum)">view</button></td>
+        <!-- <td><button type="button" class="btn btn-danger btn-sm " data-toggle="modal" data-target="#deleteforum" ng-click="editForum(forum)">Delete</button></td> -->
+      </tr>
+       </tbody>
+  </table>
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add New Forum</h4>
+        </div>
+        <div class="modal-body">
+         <form class="form-horizontal">
+         
+         
+         
+         
+         <div class="form-group">
+    <label class="control-label col-sm-2" for="forumId">Forum_Id</label>
+    <div class="col-sm-10"> 
+      <input type="text" class="form-control" id="forumId" ng-model="forumId">
+    </div>
+  </div>
+  
+  
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="name">Name</label>
+    <div class="col-sm-10"> 
+      <input type="text" class="form-control" id="name" ng-model="name">
+    </div>
+  </div>
+  
+  
+  
+  
+  
+  
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="topic">Topic:</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="topic" placeholder="Enter Topic" ng-model="topic">
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="content">Description:</label>
+    <div class="col-sm-10"> 
+      <textarea class="form-control" id="content" placeholder="Enter Description" ng-model="content"></textarea>
+    </div>
+  </div>
+ <!--  <div class="form-group">
+    <label class="control-label col-sm-2" for="category">Category:</label>
+    <div class="col-sm-10"> 
+      <input type="text" class="form-control" id="category" placeholder="Enter category" ng-model="category">
+    </div>
+  </div> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  
+   <div class="form-group">
+    <label class="control-label col-sm-2" for="dateOfCreation">dateOfCreation:</label>
+    <div class="col-sm-10"> 
+      <input type="date" class="form-control" id="dateOfCreation" ng-model="dateOfCreation">
+    </div>
+  </div>
+  
+  
+  
+  <!--  <div class="form-group">
+    <label class="control-label col-sm-2" for="usersID">usersID:</label>
+    <div class="col-sm-10"> 
+      <input type="text" class="form-control" id="usersID" ng-model="usersID">
+    </div>
+  </div> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <div class="form-group"> 
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-primary btn-lg" ng-click="addForum()" data-dismiss="modal">Post</button>
+    </div>
+  </div>
+</form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="editforum" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Edit Forum</h4>
+        </div>
+        <div class="modal-body">
+         <form class="form-horizontal">
+         <div class="form-group">
+    <label class="control-label col-sm-2" for="forumId">Forum_Id</label>
+    <div class="col-sm-10"> 
+    {{forumDataToEdit.forumId}}
+      <!-- <input type="text" class="form-control" id="forumId" ng-model="forumDataToEdit.forumId"> -->
+    </div>
+  </div>
+  
+  
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="name">Name:</label>
+    <div class="col-sm-10">
+    {{forumDataToEdit.name}}
+      <!-- <input type="text" class="form-control" id="title" ng-model="forumDataToEdit.title"> -->
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="topic">Topic:</label>
+    <div class="col-sm-10">
+    {{forumDataToEdit.topic}}
+      <!-- <input type="text" class="form-control" id="title" ng-model="forumDataToEdit.title"> -->
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="content">Description:</label>
+    <div class="col-sm-10"> 
+    {{forumDataToEdit.content}}
+      <!-- <textarea class="form-control" id="content" ng-model="forumDataToEdit.content"></textarea> -->
+    </div>
+  </div>
+ <!--  <div class="form-group">
+    <label class="control-label col-sm-2" for="category">Category:</label>
+    <div class="col-sm-10"> 
+    {{forumDataToEdit.category}}
+      <input type="text" class="form-control" id="category" ng-model="forumDataToEdit.category">
+    </div>
+  </div> -->
+  
+  
+  
+   <div class="form-group">
+    <label class="control-label col-sm-2" for="dateOfCreation">dateOfCreation:</label>
+    <div class="col-sm-10"> 
+    {{forumDataToEdit.dateOfCreation}}
+     <!--  <input type="date" class="form-control" id="dateOfCreation" ng-model="forumDataToEdit.dateOfCreation"> -->
+    </div>
+  </div>
+  
+  
+  
+  <!--  <div class="form-group">
+    <label class="control-label col-sm-2" for="usersID">usersID:</label>
+    <div class="col-sm-10"> 
+    {{forumDataToEdit.usersID}}
+      <input type="text" class="form-control" id="usersID" ng-model="forumDataToEdit.usersID">
+    </div>
+  </div> -->
+  
+  <div class="form-group"> 
+    <div class="col-sm-offset-2 col-sm-10">
+     <!--  <button type="submit" class="btn btn-primary btn-lg" ng-click="saveEdit()" data-dismiss="modal">Save Edit</button> -->
+    </div>
+  </div>
+</form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="deleteforum" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Delete Forum</h4>
+        </div>
+        <div class="modal-body">
+         <strong >You are about to delete {{forumDataToEdit.forumId}} the forum Are you sure?</strong>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="deleteForum(forumDataToEdit)">Yes</button>
+           <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  </font>
+    </div>
+    
+

@@ -1,0 +1,39 @@
+ <!-- Login Form -->
+                        <form>
+                        <div class="form-control" ng-controller="loginController"></div>
+   <h4>Login Here</h4>
+      <h4>{{message}}</h4>
+                              <label>UserName</label>
+                            <div class="row margin-bottom-20">
+                                <div class="col-md-6 col-md-offset-0">
+    
+		<input type="text" class="form-control" id="username" name="username" placeholder="username" required="" autofocus=""  ng-model="username"/>
+                                    
+                                </div>
+                            </div>
+                            
+           
+                             <label>Password
+                                <span class="color-red">*</span>
+                            </label>
+                            <div class="row margin-bottom-20">
+                                <div class="col-md-6 col-md-offset-0">
+	 <input type="password" class="form-control" id="password" name="password" placeholder="Password" required="" ng-model="password"/>
+                                </div>
+                            </div>
+                            
+                            
+                            
+                                 
+                            <p>
+                                <button type="submit" class="btn btn-primary" ng-click="login()">Login</button>
+                            </p>
+                        </form>
+                        <!-- End login Form -->                   
+                            
+                            
+                            
+                          
+                            
+                            
+                          
