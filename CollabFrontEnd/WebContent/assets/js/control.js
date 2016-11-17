@@ -12,13 +12,6 @@ letzChaat.config(function($routeProvider) {
 		templateUrl:"main.html",
 		controller:'mainController'
 	})
-	
-	.when("/index",
-	{
-		templateUrl:"index.html",
-		controller:'indexController'
-	})
-	
 	.when("/login",
 	{
 		templateUrl:"login.html",
@@ -34,14 +27,60 @@ letzChaat.config(function($routeProvider) {
 		templateUrl:"about.html",
 		controller:'aboutController'
 	})
+	.when("/404",
+	{
+		templateUrl:"404.html",
+		
+	})
+	.when("/portfolio",
+	{
+		templateUrl:"portfolio.html",
+		
+	})
+	.when("/pricing",
+	{
+		templateUrl:"pricing.html",
+		
+	})
+	.when("/shortcodes",
+	{
+		templateUrl:"shortcodes.html",
+		
+	})
+	.when("/portfolio",
+	{
+		templateUrl:"portfolio.html",
+		
+	})
+	.when("/event",
+	{
+		templateUrl:"event.html",
+		controller:'eventController'
+	})
+	.when("/adminEvent",
+	{
+		templateUrl:"adminEvent.html",
+		controller:'adminEventController'
+	})
+	.when("/blog",
+	{
+		templateUrl:"blog.html",
+		controller:'blogController'
+	})
+	.when("/blog-item",
+	{
+		templateUrl:"blog-item.html",
+		controller:'blogController'
+	})
+	.when("/contact",
+	{
+		templateUrl:"contact.html",
+		
+	})
 	.when("/services",
 	{
 		templateUrl:"services.html",
 		controller:'servicesController'
-	}).when("/blog",
-	{
-		templateUrl:"blog.html",
-		controller:'blogController'
 	}).
 	when("/logout",
 			{
@@ -68,49 +107,16 @@ letzChaat.config(function($routeProvider) {
 		templateUrl:"adminBlog.html",
 		controller:'adminBlogController'
 	})
-	
-	
-	
-	
-	
-	
-	
-	.when("/adminEvent",
-	{
-		templateUrl:"adminEvent.html",
-		controller:'adminEventController'
-	})
-	
 	.when("/adminJobs",
 	{
 		templateUrl:"adminJobs.html",
-		controller:'adminJobsController'
+		controller:'adminjobsController'
 	})
 	.when("/forum",
 	{
 		templateUrl:"forum.html",
 		controller:'forumController'
 	})
-	
-	
-	
-	.when("/event",
-	{
-		templateUrl:"event.html",
-		controller:'eventController'
-	})
-	
-	
-	letzChaat.controller('indexController',function($scope)		
-			{
-				$scope.message="you are in main page";
-				$scope.isBlog=true;	
-			}
-			);
-	
-	
-	
-	
 });
 letzChaat.controller('mainController',function($scope)		
 		{
@@ -118,9 +124,12 @@ letzChaat.controller('mainController',function($scope)
 			$scope.isBlog=true;	
 		}
 		);
-letzChaat.controller('logoutController',function($scope,$rootScope)		
+letzChaat.controller('logoutController',function($scope,$rootScope,$http)		
 		{
+	
 			console.log("logout controller called");
+	
+			
 			$rootScope.login=true;
 			$rootScope.register=true;
 			$rootScope.services=true;
@@ -132,13 +141,21 @@ letzChaat.controller('logoutController',function($scope,$rootScope)
 			$rootScope.logout=false;
 			$rootScope.chat=false;
 			$rootScope.adminBlog=false;
-			$rootScope.adminEvent=false;
 			$rootScope.users=false;
+			
+			
+				
+				$http.get('http://localhost:8085/Collaboration/logout');
+				$scope.message="You are successfully logged out...........";
+				
+			
+			
+			
+			
 		}
 		);
 letzChaat.controller('loginController',['$scope','$http','$location','$rootScope',function($scope,$http,$location,$rootScope)		
 		{
-	
              console.log(" login controller");
 			 $scope.login=function()
 			 {
@@ -163,7 +180,6 @@ letzChaat.controller('loginController',['$scope','$http','$location','$rootScope
 			$rootScope.home=false;
 			$rootScope.logout=true;
 			$rootScope.chat=true;
-			$rootScope.event=true;
 			console.log('logout:'+$rootScope.logout);
 			console.log("wat is this ya:"+response.data);
 			$scope.message="Welcome user";
@@ -184,7 +200,6 @@ letzChaat.controller('loginController',['$scope','$http','$location','$rootScope
 			$rootScope.about=false;
 			$rootScope.home=false;
 			$rootScope.adminBlog=true;
-			$rootScope.adminEvent=true;
 			$rootScope.users=true;
 			$rootScope.registeredUsers=true;
 			$rootScope.logout=true;
@@ -236,11 +251,12 @@ letzChaat.controller("adminJobsController",function($scope,$http,$rootScope)
 		$rootScope.about=false;
 		$rootScope.home=false;
 		$rootScope.adminBlog=true;
-		$rootScope.adminEvent=true;
 		$rootScope.users=true;
 		$rootScope.registeredUsers=true;
 		$rootScope.logout=true;
 		$rootScope.adminJobs=true;
+		
+		
 	  console.log("you are in adminjobs");
 	  console.log("inside job controller");
 	    $http.get("http://localhost:8085/Collaboration/viewAllJobs")
@@ -261,6 +277,11 @@ letzChaat.controller("adminBlogController",function($scope,$http,$rootScope)
 	$rootScope.registeredUsers=true;
 	$rootScope.logout=true;
 	$rootScope.adminJobs=true;
+	
+	$rootScope.addEvent=true;
+	
+	
+	
 	console.log("i am in adminblog controller");
 	console.log("after this");
 			 $http.get("http://localhost:8085/Collaboration/viewBlogs")
@@ -317,6 +338,8 @@ letzChaat.controller("adminBlogController",function($scope,$http,$rootScope)
 			$scope.deleteBlog=function(blogDataToEdit)
 			{
 				console.log("delete blog called");
+				title:$scope.blogDataToEdit.title;
+				console.log("title:"+blogDataToEdit.title);
 				blogId:$scope.blogDataToEdit.blogId;
 				console.log("blogId:"+blogDataToEdit.blogId);
 				$http['delete']('http://localhost:8085/Collaboration/deleteBlog/'+blogDataToEdit.blogId);
@@ -324,9 +347,32 @@ letzChaat.controller("adminBlogController",function($scope,$http,$rootScope)
 			 	    .then(function (response) {$scope.blogs = response.data;});
 			}
 			
+			$scope.approveBlog=function(i)
+			{
+				var dataObj = {
+						
+						blogId:$scope.blogDataToEdit.blogId,
+						title:$scope.blogDataToEdit.title,
+						usersID:$scope.blogDataToEdit.usersID,
+						dateOfCreation:$scope.blogDataToEdit.dateOfCreation,
+						content:$scope.blogDataToEdit.content,
+						category:$scope.blogDataToEdit.category
+		 				
+		 		};
+				$http.put('http://localhost:8085/Collaboration/approveBlog/'+i, dataObj);
+				$http.get("http://localhost:8085/Collaboration/viewBlogs")
+		 	    .then(function (response) {$scope.blogs = response.data;});
+			}
+			
 		}
 
 		);
+
+
+
+
+
+
 
 letzChaat.controller('aboutController',function($scope)		
 		{
@@ -339,23 +385,31 @@ letzChaat.controller('servicesController',function($scope)
 		}
 		);
 
-letzChaat.controller("blogController",function($scope,$http)	
+
+
+letzChaat.controller("blogController",function($scope,$http,$rootScope)	
 		{	
+	
+	console.log("i am in blogController");
+	console.log("after this");
 			 $http.get("http://localhost:8085/Collaboration/viewBlogs")
-			    .then(function (response) {$scope.blogs = response.data;});
-			
+			    .then(function (response) {
+			    	
+			    	$scope.blogs = response.data;
+			    	
+			    	console.log("data:"+response.data);
+			    });
 			$scope.newBlog={};
 			console.log("In Controller");
 			$scope.addBlog=function(newBlog)
 			{
 				var dataObj = {
-						
-						usersID:$scope.usersID,
-		 				dateOfCreation:$scope.dateOfCreation,
 						blogId:$scope.blogId,
-		    			title:$scope.title,
-		    			content:$scope.content,
-		 				category:$scope.category
+						title:$scope.title,
+						usersID:$scope.usersID,
+						/*dateOfCreation:$scope.dateOfCreation,*/
+						content:$scope.content,
+						category:$scope.category
 		 		};
 				console.log("title:"+dataObj);
 				 var res = $http.post('http://localhost:8085/Collaboration/addBlog',dataObj);
@@ -376,12 +430,14 @@ letzChaat.controller("blogController",function($scope,$http)
 			$scope.saveEdit=function()
 			{
 				var dataObj = {
-		    			title:$scope.blogDataToEdit.title,
-		    			content:$scope.blogDataToEdit.content,
-		 				category:$scope.blogDataToEdit.category,
-		 				blogId:$scope.blogDataToEdit.blogId,
-		 				usersID:$scope.blogDataToEdit.usersID,
-		 				dateOfCreation:$scope.blogToEdit.dateOfCreation
+						
+						blogId:$scope.blogDataToEdit.blogId,
+						title:$scope.blogDataToEdit.title,
+						usersID:$scope.blogDataToEdit.usersID,
+						/*dateOfCreation:$scope.blogDataToEdit.dateOfCreation,*/
+						content:$scope.blogDataToEdit.content,
+						category:$scope.blogDataToEdit.category
+		 				
 		 		};
 				$http.put('http://localhost:8085/Collaboration/updateBlog', dataObj);
 				$http.get("http://localhost:8085/Collaboration/viewBlogs")
@@ -389,10 +445,10 @@ letzChaat.controller("blogController",function($scope,$http)
 			}
 			$scope.deleteBlog=function(blogDataToEdit)
 			{
-				console.log("delete blog called");
+				console.log("delete user blog called");
 				blogId:$scope.blogDataToEdit.blogId;
 				console.log("blogId:"+blogDataToEdit.blogId);
-				/*$http.delete('http://localhost:8085/Collaboration/deleteBlog/'+blogDataToEdit.blogId);*/
+				$http['delete']('http://localhost:8085/Collaboration/deleteBlog/'+blogDataToEdit.blogId);
 				 $http.get("http://localhost:8085/Collaboration/viewBlogs")
 			 	    .then(function (response) {$scope.blogs = response.data;});
 			}
@@ -400,52 +456,6 @@ letzChaat.controller("blogController",function($scope,$http)
 		}
 
 		);
-
-/*letzChaat.controller('forumController',function($scope)		
-		{
-			$scope.message="you are in forum page";
-		}
-		);
-*/
-letzChaat.controller('userHomeController',function($scope)		
-		{
-			$scope.message="you are in userhome page";
-		}
-		);
-
-letzChaat.controller('adminController',function($scope)		
-		{
-			$scope.message="you are in admin controller";
-		}
-		);
-
-
-letzChaat.controller('jobsController',function($scope,$http)		
-		{
-	console.log("inside job controller");
-    $http.get("http://localhost:8085/Collaboration/viewAllJobs")
-    .then(function (response) {$scope.jobs = response.data;});
-    
-    $scope.applyJob=function()
-    {
-    	 console.log("applyJob function called");
-    	 var jobData={
-           jobId:$scope.jobId,
-    	 registrationNumber:$scope.registrationNumber,
-    	 studentId:$scope.studentId,
-    	 certificateNumber:$scope.certificateNumber	
-    	 };
-    	 var res = $http.post('http://localhost:8085/Collaboration/registerJob',jobData);
-    }
-		}
-       
-		);
-
-
-
-
-
-
 letzChaat.controller("adminEventController",function($scope,$http,$rootScope)	
 		{	
 	$rootScope.login=false;
@@ -458,7 +468,12 @@ letzChaat.controller("adminEventController",function($scope,$http,$rootScope)
 	$rootScope.registeredUsers=true;
 	$rootScope.logout=true;
 	$rootScope.adminJobs=true;
-	console.log("i am in adminevent controller");
+	$rootScope.adminBlog=true;
+	$rootScope.addEvent=true;
+	
+	
+	
+	console.log("i am in admin event controller");
 	console.log("after this");
 			 $http.get("http://localhost:8085/Collaboration/viewEvents")
 			    .then(function (response) {
@@ -468,18 +483,21 @@ letzChaat.controller("adminEventController",function($scope,$http,$rootScope)
 			    	console.log("data:"+response.data);
 			    });
 			$scope.newEvent={};
-			console.log("In Controller");
+			console.log("In admin  eve  Controller");
 			$scope.addEvent=function(newEvent)
 			{
 				var dataObj = {
+						
 						eventId:$scope.eventId,
 						title:$scope.title,
-						description:$scope.	description,
-
-						usersID:$scope.usersID,
-						eventDate:$scope.eventDate,
-						venue:$scope.venue,
-							};
+						description:$scope.description,						
+						usersID:$scope.usersID,						
+						eventDate:$scope.eventDate,	
+						venue:$scope.venue
+						
+						
+						
+		 		};
 				console.log("title:"+dataObj);
 				 var res = $http.post('http://localhost:8085/Collaboration/addEvent',dataObj);
 				 $http.get("http://localhost:8085/Collaboration/viewEvents")
@@ -492,7 +510,7 @@ letzChaat.controller("adminEventController",function($scope,$http,$rootScope)
 			};
 			$scope.editEvent=function(event)
 			{
-				console.log("inside editevent");
+				console.log("inside admin editevent");
 				console.log("event:"+event);
 				$scope.eventDataToEdit=event;
 			}
@@ -502,11 +520,11 @@ letzChaat.controller("adminEventController",function($scope,$http,$rootScope)
 						
 						eventId:$scope.eventDataToEdit.eventId,
 						title:$scope.eventDataToEdit.title,
-						description:$scope.eventDataToEdit.description,
-						usersID:$scope.eventDataToEdit.usersID,
-						eventDate:$scope.eventDataToEdit.eventDate,
-						venue:$scope.eventDataToEdit.venue,
-						
+						description:$scope.eventDataToEdit.description,						
+						usersID:$scope.eventDataToEdit.usersID,						
+						eventDate:$scope.eventDataToEdit.eventDate,	
+						venue:$scope.eventDataToEdit.venue
+		 				
 		 		};
 				$http.put('http://localhost:8085/Collaboration/updateEvent', dataObj);
 				$http.get("http://localhost:8085/Collaboration/viewEvents")
@@ -514,11 +532,12 @@ letzChaat.controller("adminEventController",function($scope,$http,$rootScope)
 			}
 			$scope.deleteEvent=function(eventDataToEdit)
 			{
-				console.log("delete event called");
+				console.log("delete event inside admin called");
+				title:$scope.eventDataToEdit.title;
+				console.log("title:"+eventDataToEdit.title);
 				eventId:$scope.eventDataToEdit.eventId;
 				console.log("eventId:"+eventDataToEdit.eventId);
 				$http['delete']('http://localhost:8085/Collaboration/deleteEvent/'+eventDataToEdit.eventId);
-				$http.DELETE('http://localhost:8085/Collaboration/deleteEvent/'+eventDataToEdit.eventId);
 				 $http.get("http://localhost:8085/Collaboration/viewEvents")
 			 	    .then(function (response) {$scope.events = response.data;});
 			}
@@ -527,47 +546,29 @@ letzChaat.controller("adminEventController",function($scope,$http,$rootScope)
 
 		);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-letzChaat.controller("eventController",function($scope,$http)	
+letzChaat.controller("eventController",function($scope,$http,$rootScope)	
 		{	
 	
-	
-	
-	
+	console.log("i am in eventController");
+	console.log("after this");
 			 $http.get("http://localhost:8085/Collaboration/viewEvents")
-			    .then(function (response) {$scope.events = response.data;});
-			
+			    .then(function (response) {
+			    	
+			    	$scope.events = response.data;
+			    	
+			    	console.log("data:"+response.data);
+			    });
 			$scope.newEvent={};
-			console.log("In Controller");
+			console.log("In eventController............");
 			$scope.addEvent=function(newEvent)
 			{
 				var dataObj = {
-						
 						eventId:$scope.eventId,
-		 				title:$scope.title,
-						description:$scope.description,
-		    			usersID:$scope.usersID,
-		    			eventDate:$scope.eventDate,
-		 				venue:$scope.venue
+						title:$scope.title,
+						description:$scope.description,						
+						usersID:$scope.usersID,						
+						eventDate:$scope.eventDate,	
+						venue:$scope.venue
 		 		};
 				console.log("title:"+dataObj);
 				 var res = $http.post('http://localhost:8085/Collaboration/addEvent',dataObj);
@@ -581,30 +582,30 @@ letzChaat.controller("eventController",function($scope,$http)
 			};
 			$scope.editEvent=function(event)
 			{
-				console.log("inside editevent");
-				console.log("event:"+event);
+				console.log("inside editEvent");
+				//console.log("event:"+event);
 				$scope.eventDataToEdit=event;
 			}
 			$scope.saveEdit=function()
 			{
 				var dataObj = {
-		    			eventId:$scope.eventDataToEdit.eventId,
-		    			title:$scope.eventDataToEdit.title,
-		 				description:$scope.eventDataToEdit.description,
-		 				usersID:$scope.eventDataToEdit.usersID,
-		 				eventDate:$scope.eventDataToEdit.eventDate,
-		 				venue:$scope.eventToEdit.venue
+						eventId:$scope.eventDataToEdit.eventId,
+						title:$scope.eventDataToEdit.title,
+						description:$scope.eventDataToEdit.description,						
+						usersID:$scope.eventDataToEdit.usersID,						
+						eventDate:$scope.eventDataToEdit.eventDate,	
+						venue:$scope.eventDataToEdit.venue
 		 		};
 				$http.put('http://localhost:8085/Collaboration/updateEvent', dataObj);
 				$http.get("http://localhost:8085/Collaboration/viewEvents")
 		 	    .then(function (response) {$scope.events = response.data;});
 			}
-			$scope.deleteEvent=function(eventDataToEdit)
+			$scope.deleteevent=function(eventDataToEdit)
 			{
-				console.log("delete event called");
+				console.log("delete user event called");
 				eventId:$scope.eventDataToEdit.eventId;
 				console.log("eventId:"+eventDataToEdit.eventId);
-				/*$http.delete('http://localhost:8085/Collaboration/deleteEvent/'+eventDataToEdit.eventId);*/
+				$http['delete']('http://localhost:8085/Collaboration/deleteEvent/'+eventDataToEdit.eventId);
 				 $http.get("http://localhost:8085/Collaboration/viewEvents")
 			 	    .then(function (response) {$scope.events = response.data;});
 			}
@@ -614,3 +615,261 @@ letzChaat.controller("eventController",function($scope,$http)
 		);
 
 
+
+
+
+
+
+
+
+letzChaat.controller('aboutController',function($scope)		
+		{
+			$scope.message="you are in about page";
+		}
+		);
+letzChaat.controller('servicesController',function($scope)		
+		{
+			$scope.message="you are in services page";
+		}
+		);
+
+
+
+
+
+
+
+letzChaat.controller('forumController',function($scope)		
+		{
+			$scope.message="you are in forum page";
+		}
+		);
+letzChaat.controller('userHomeController',function($scope,$rootScope)		
+		{
+			$rootScope.event=true;
+			$scope.message="you are in userhome page";
+		}
+		);
+
+letzChaat.controller('adminController',function($scope,$rootScope)		
+		{
+	$rootScope.event=false;
+			$scope.message="you are in admin controller";
+			
+			
+			console.log("admin Controller  called");
+		
+			
+			$rootScope.adminJobs=true;
+			$rootScope.adminEvent=true;
+			$rootScope.adminBlog=true;
+		}
+		);
+
+
+letzChaat.controller('jobsController',function($scope,$http)		
+		{
+	console.log("inside job controller");
+    $http.get("http://localhost:8085/Collaboration/viewAllJobs")
+    .then(function (response) {$scope.jobs = response.data;});
+    $http.get("http://localhost:8085/Collaboration/jobsApplied")
+    .then(function (response) {$scope.jobsApplied = response.data;});
+    
+    $scope.newJob={};
+	
+	$scope.addJob=function(newJob)
+	{	console.log("In jobController............");
+		var dataObj = {
+				
+				company:$scope.company,
+				aboutCompany:$scope.aboutCompany,				
+				role:$scope.role,						
+				skillsRequired:$scope.skillsRequired,
+				eligibilityCriteria:$scope.eligibilityCriteria,
+				ctc:$scope.ctc,						
+				dateOfInterview:$scope.dateOfInterview,						
+				addressOfTheCompany:$scope.addressOfTheCompany,	
+				urlOfTheCompany:$scope.urlOfTheCompany
+ 		};
+		console.log("title:"+dataObj);
+		 var res = $http.post('http://localhost:8085/Collaboration/addJob',dataObj);
+		 $http.get("http://localhost:8085/Collaboration/viewAllJobs")
+	 	    .then(function (response) {$scope.jobs = response.data;});
+	 		res.success(function(data, status, headers, config) {
+	 			$scope.message = data;
+	 			console.log("status:"+status);
+	 		});
+	 		 
+	}
+	$scope.editJob=function(resource)
+	{
+		console.log("inside editJob");
+		//console.log("job:"+job);
+		$scope.jobDataToEdit=resource;
+	}
+	$scope.saveEdit=function()
+	{
+		var dataObj = {
+				
+				jobId:$scope.jobDataToEdit.jobId,
+				company:$scope.jobDataToEdit.company,
+				aboutCompany:$scope.jobDataToEdit.aboutCompany,						
+				role:$scope.jobDataToEdit.role,						
+				skillsRequired:$scope.jobDataToEdit.skillsRequired,
+				eligibilityCriteria:$scope.jobDataToEdit.eligibilityCriteria,
+				ctc:$scope.jobDataToEdit.ctc,						
+				dateOfInterview:$scope.jobDataToEdit.dateOfInterview,						
+				addressOfTheCompany:$scope.jobDataToEdit.addressOfTheCompany,	
+				urlOfTheCompany:$scope.jobDataToEdit.urlOfTheCompany
+		
+ 		};
+		$http.put('http://localhost:8085/Collaboration/updateJob', dataObj);
+		$http.get("http://localhost:8085/Collaboration/viewAllJobs")
+ 	    .then(function (response) {$scope.jobs = response.data;});
+	}
+	$scope.deleteJob=function(jobDataToEdit)
+	{
+		console.log("delete user job called");
+		jobId:$scope.jobDataToEdit.jobId;
+		console.log("jobId:"+jobDataToEdit.jobId);
+		$http['delete']('http://localhost:8085/Collaboration/deleteJob/'+jobDataToEdit.jobId);
+		 $http.get("http://localhost:8085/Collaboration/viewAllJobs")
+	 	    .then(function (response) {$scope.jobs = response.data;});
+	}
+    
+    
+    $scope.applyJob=function()
+    {
+    	 console.log("applyJob function called");
+    	 var jobData={
+           jobId:$scope.jobDataToEdit.jobId,
+    	 registrationNumber:$scope.registrationNumber,
+    	/* studentId:$scope.studentId,*/
+    	 certificateNumber:$scope.certificateNumber	
+    	 };
+    	 	$http.post('http://localhost:8085/Collaboration/registerJob',jobData).then(function (response) {
+		 console.log("result   data:"+response.data);
+		 var r=response.data.toString();
+		 console.log("response:"+r);
+	     
+			if(r==1)
+				{
+				 console.log("job applied successfully");
+				/* $scope.apply="true";
+				 jobId:$scope.jobDataToEdit.jobId;*/
+				 $scope.message="Successfully applied for the job with id "+$scope.jobDataToEdit.jobId;
+				}
+  		});
+   
+    }
+		}
+
+
+
+
+       
+		);
+
+
+letzChaat.controller('adminjobsController',function($scope,$http)		
+		{
+	console.log("inside adminjobsController");
+    $http.get("http://localhost:8085/Collaboration/viewAllJobs")
+    .then(function (response) {$scope.jobs = response.data;});
+    $http.get("http://localhost:8085/Collaboration/jobsApplied")
+    .then(function (response) {$scope.jobsApplied = response.data;});
+    
+    $scope.newJob={};
+	
+	$scope.addJob=function(newJob)
+	{	console.log("In add adminjobsController............");
+		var dataObj = {
+				
+				company:$scope.company,
+				aboutCompany:$scope.aboutCompany,				
+				role:$scope.role,						
+				skillsRequired:$scope.skillsRequired,
+				eligibilityCriteria:$scope.eligibilityCriteria,
+				ctc:$scope.ctc,						
+				dateOfInterview:$scope.dateOfInterview,						
+				addressOfTheCompany:$scope.addressOfTheCompany,	
+				urlOfTheCompany:$scope.urlOfTheCompany
+ 		};
+		console.log("title:"+dataObj);
+		 var res = $http.post('http://localhost:8085/Collaboration/addJob',dataObj);
+		 $http.get("http://localhost:8085/Collaboration/viewAllJobs")
+	 	    .then(function (response) {$scope.jobs = response.data;});
+	 		res.success(function(data, status, headers, config) {
+	 			$scope.message = data;
+	 			console.log("status:"+status);
+	 		});
+	 		 
+	}
+	$scope.editJob=function(resource)
+	{
+		console.log("inside editJob");
+		//console.log("job:"+job);
+		$scope.jobDataToEdit=resource;
+	}
+	$scope.saveEdit=function()
+	{
+		var dataObj = {
+				
+				jobId:$scope.jobDataToEdit.jobId,
+				company:$scope.jobDataToEdit.company,
+				aboutCompany:$scope.jobDataToEdit.aboutCompany,						
+				role:$scope.jobDataToEdit.role,						
+				skillsRequired:$scope.jobDataToEdit.skillsRequired,
+				eligibilityCriteria:$scope.jobDataToEdit.eligibilityCriteria,
+				ctc:$scope.jobDataToEdit.ctc,						
+				dateOfInterview:$scope.jobDataToEdit.dateOfInterview,						
+				addressOfTheCompany:$scope.jobDataToEdit.addressOfTheCompany,	
+				urlOfTheCompany:$scope.jobDataToEdit.urlOfTheCompany
+		
+ 		};
+		$http.put('http://localhost:8085/Collaboration/updateJob', dataObj);
+		$http.get("http://localhost:8085/Collaboration/viewAllJobs")
+ 	    .then(function (response) {$scope.jobs = response.data;});
+	}
+	$scope.deleteJob=function(jobDataToEdit)
+	{
+		console.log("delete user job called");
+		jobId:$scope.jobDataToEdit.jobId;
+		console.log("jobId:"+jobDataToEdit.jobId);
+		$http['delete']('http://localhost:8085/Collaboration/deleteJob/'+jobDataToEdit.jobId);
+		 $http.get("http://localhost:8085/Collaboration/viewAllJobs")
+	 	    .then(function (response) {$scope.jobs = response.data;});
+	}
+    
+    
+    $scope.applyJob=function()
+    {
+    	 console.log("applyJob function called");
+    	 var jobData={
+           jobId:$scope.jobDataToEdit.jobId,
+    	 registrationNumber:$scope.registrationNumber,
+    	/* studentId:$scope.studentId,*/
+    	 certificateNumber:$scope.certificateNumber	
+    	 };
+    	 	$http.post('http://localhost:8085/Collaboration/registerJob',jobData).then(function (response) {
+		 console.log("result   data:"+response.data);
+		 var r=response.data.toString();
+		 console.log("response:"+r);
+	     
+			if(r==1)
+				{
+				 console.log("job applied successfully");
+				/* $scope.apply="true";
+				 jobId:$scope.jobId;*/
+				 $scope.message="Successfully applied for the job with id "+$scope.jobId;
+				}
+  		});
+   
+    }
+		}
+
+
+
+
+       
+		);

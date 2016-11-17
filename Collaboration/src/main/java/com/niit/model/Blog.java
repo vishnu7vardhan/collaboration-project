@@ -1,15 +1,11 @@
 package com.niit.model;
 
-import javax.persistence.Entity;
-import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.stereotype.Component;
-
 import java.util.Date;
-import java.util.Set;
 
-import javax.persistence.*;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+import org.springframework.stereotype.Component;
 
 @Entity
 @Component
@@ -21,19 +17,23 @@ public class Blog {
 		private Date dateOfCreation;
 		private String content;
 		private String category;
-		@Transient
-		private String errorCode;
-		@Transient
-		private String errorMessage;
-	
+		private int approved;
 		
 		
+		public int isApproved() {
+			return approved;
+		}
+
+		public void setApproved(int approved) {
+			this.approved = approved;
+		}
+
 		public int getUsersID() {
 			return usersID;
 		}
 
-		public void setUsersID(int userId) {
-			this.usersID = userId;
+		public void setUsersID(int usersID) {
+			this.usersID = usersID;
 		}
 
 		public String getCategory() {
@@ -44,21 +44,6 @@ public class Blog {
 			this.category = category;
 		}
 
-		public String getErrorCode() {
-			return errorCode;
-		}
-
-		public void setErrorCode(String errorCode) {
-			this.errorCode = errorCode;
-		}
-
-		public String getErrorMessage() {
-			return errorMessage;
-		}
-		
-		public void setErrorMessage(String errorMessage) {
-			this.errorMessage = errorMessage;
-		}
 		public String getBlogId() {
 			return blogId;
 		}

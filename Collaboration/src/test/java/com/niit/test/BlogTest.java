@@ -31,10 +31,11 @@ public class BlogTest {
 		blog.setDateOfCreation(new Date());
 		blog.setTitle("title");
 	//	blog.setUsersID("USER_001");
+		blog.setApproved(0);
 		blog.setCategory("this is category");
 		blogDAO.saveOrUpdateBlog(blog);
 
-		/*blog.setBlogId("BLOG_002");
+	/*	blog.setBlogId("BLOG_002");
 		blog.setContent("Content");
 		blog.setDateOfCreation(new Date());
 		blog.setTitle("title");

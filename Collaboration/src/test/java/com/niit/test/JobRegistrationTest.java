@@ -6,6 +6,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import com.niit.dao.JobsDao;
 import com.niit.model.Job;
+import com.niit.model.JobRegistration;
 
 public class JobRegistrationTest {
 
@@ -17,6 +18,9 @@ public class JobRegistrationTest {
 
 		Job job = (Job) context.getBean("job");
 		JobsDao jobDAO = (JobsDao) context.getBean("jobDao");
+		
+		JobRegistration jobRegistration = (JobRegistration) context.getBean("jobRegistration");
+		
 		
 		// INSERT OBJECTS INTO DB
 
@@ -31,6 +35,12 @@ public class JobRegistrationTest {
 		job.setUrlOfTheCompany("http://www.w3schools.com");
 		jobDAO.addJob(job);
 		
+		
+		jobRegistration.setJobId(119);
+		jobRegistration.setRegistrationNumber("sdfasdf");
+		jobRegistration.setStudentId(11);
+		jobRegistration.setCertificateNumber("gsefvs");
+		jobDAO.registerJob(jobRegistration);
 		
 		/*job = jobDAO.viewJob(116);
 		job.setDateOfInterview(new Date());

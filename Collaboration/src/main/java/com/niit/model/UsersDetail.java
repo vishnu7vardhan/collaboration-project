@@ -16,21 +16,49 @@ public class UsersDetail {
 	@GeneratedValue
 	private int userId;
 	private String role;
-	
-	
+	@Transient
+	private String errorCode;
+	@Transient
+	private String errorMessage;
+
+	@Size(min = 3, max = 30, message = "Size can be between 3 and 30")
+	@NotEmpty(message = "User full name can not be empty.")
 	private String userFullName;
 
+	@Size(min = 3, max = 30, message = "Username Size can be between 3 and 30")
+	@NotEmpty(message = "UserName can not be empty.")
+	@Column(unique = true)
 	private String username;
 
+	@NotEmpty(message = "Email can not be empty.")
+	@Column(unique = true)
 	private String userEmail;
 
+	@NotEmpty(message = "Phone can not be empty.")
+	@Column(unique = true)
 	private String userPhone;
 
+	@NotEmpty(message = "Password can not be empty.")
 	private String password;
 
 	private boolean enabled;
 
-	
+	public String getErrorCode() {
+		return errorCode;
+	}
+
+	public void setErrorCode(String errorCode) {
+		this.errorCode = errorCode;
+	}
+
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
+	}
+
 	public String getRole() {
 		return role;
 	}

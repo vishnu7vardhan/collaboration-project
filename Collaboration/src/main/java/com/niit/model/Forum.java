@@ -13,6 +13,8 @@ public class Forum {
 	private int questionId;
 	private String questionTitle;
 	private String questionDescription;
+	
+	
 	public String getQuestionTitle() {
 		return questionTitle;
 	}
