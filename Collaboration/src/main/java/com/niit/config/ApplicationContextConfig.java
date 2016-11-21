@@ -15,8 +15,6 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.niit.dao.ForumAnswerDao;
-import com.niit.dao.ForumAnswerDaoImpl;
 import com.niit.dao.BlogDao;
 import com.niit.dao.Blog1Dao;
 import com.niit.dao.Blog1DaoImpl;
@@ -30,7 +28,6 @@ import com.niit.dao.JobsDao;
 import com.niit.dao.JobsDaoImpl;
 import com.niit.dao.UsersDetailDao;
 import com.niit.dao.UsersDetailDaoImpl;
-import com.niit.model.ForumAnswer;
 import com.niit.model.Blog;
 import com.niit.model.Event;
 import com.niit.model.Forum;
@@ -85,7 +82,7 @@ public class ApplicationContextConfig {
 		LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
 		sessionBuilder.addProperties(getHibernateProperties());
 		sessionBuilder.addAnnotatedClasses(UsersDetail.class);
-		sessionBuilder.addAnnotatedClasses(ForumAnswer.class);
+		/*sessionBuilder.addAnnotatedClasses(ForumAnswer.class);*/
 		sessionBuilder.addAnnotatedClass(Forum.class);
 		System.out.println("inside class ..");
 		sessionBuilder.addAnnotatedClass(Blog.class);
@@ -109,13 +106,13 @@ public class ApplicationContextConfig {
 	public UsersDetailDao getusersDetailDao(SessionFactory sessionFactory) {
 		return new UsersDetailDaoImpl(sessionFactory);
 	}
-	
+/*	
 	@Autowired
 	@Bean(name = "forumAnswerDao")
 	public ForumAnswerDao getAnswerDao(SessionFactory sessionFactory) {
 		return new ForumAnswerDaoImpl(sessionFactory);
 	}
-
+*/
 	@Autowired
 	@Bean(name = "eventDao")
 	public EventDao getEventDao(SessionFactory sessionFactory) {

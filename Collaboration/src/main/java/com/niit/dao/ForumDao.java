@@ -2,16 +2,16 @@ package com.niit.dao;
 
 import java.util.List;
 
-import com.niit.model.*;
+import com.niit.model.Forum;
 
 public interface ForumDao {
-	void addQuestion(Forum forum);
 
-	List<Forum> viewQuestions();
+	public void saveOrUpdateForum(Forum forum);
 
-	void updateQuestion(Forum forum);
+	public Forum getForumById(String forumId);
 
-	void deleteQuestion(int id);
-
-	Forum getQuestion(int id);
+	public List<Forum> getAllForums();
+	
+	public boolean delete(String forumId);
 }
+

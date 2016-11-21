@@ -1,53 +1,77 @@
 package com.niit.dao;
 
-import java.util.List;
-
-import javax.transaction.Transactional;
-
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import com.niit.model.Forum;
-@Transactional
+
+import java.util.List;
+
+import javax.transaction.Transactional;
+
 @Repository("forumDAO")
+@Transactional
 public class ForumDaoImpl implements ForumDao {
 
 	@Autowired
-	SessionFactory sessionFactory;
-	
-	public ForumDaoImpl( ) {
+	private SessionFactory sessionFactory;
+
+	public ForumDaoImpl() {
 		super();
-	
 	}
-	
+
 	public ForumDaoImpl(SessionFactory sessionFactory) {
 		super();
 		this.sessionFactory = sessionFactory;
 	}
-	public void addQuestion(Forum forum) {
-		Session session=sessionFactory.getCurrentSession();
-		session.save(forum);
+
+	@Transactional
+	public void saveOrUpdateForum(Forum forum) {
+
+		Session session = sessionFactory.openSession();
+		try {
+			session.saveOrUpdate(forum);
+			session.flush();
+		} catch (HibernateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-	public List<Forum> viewQuestions() {
-		Session session=sessionFactory.getCurrentSession();
-		return session.createCriteria(Forum.class).list();
+
+	@Transactional
+	public Forum getForumById(String forumId) {
+		Session session = sessionFactory.openSession();
+		return (Forum) session.get(Forum.class, forumId);
 	}
-	public void updateQuestion(Forum forum)
-	{
-		Session session=sessionFactory.getCurrentSession();
-		session.update(forum);
+
+	@Transactional
+	public boolean delete(String forumId) {
+		// TODO Auto-generated method stub
+		try {
+
+			Forum forum = getForumById(forumId);
+			sessionFactory.getCurrentSession().delete(forum);
+			sessionFactory.getCurrentSession().flush();
+
+			return true;
+		} catch (HibernateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return false;
 	}
-	public void deleteQuestion(int id) {
-		Session session=sessionFactory.getCurrentSession();
-		Forum forum=(Forum) session.load(Forum.class,new Integer(id));
-		session.delete(forum);
+
+	@Transactional
+	public List<Forum> getAllForums() {
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("from Forum");
+		List<Forum> forums = query.list();
+		return forums;
 	}
-	public Forum getQuestion(int id) {
-		Session session=sessionFactory.getCurrentSession();
-		Forum forum=(Forum) session.get(Forum.class,new Integer(id));
-		System.out.println("description:"+forum.getQuestionDescription());
-		return forum;
-	}
+
 }
+

@@ -2,8 +2,9 @@ package com.niit.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,29 +18,33 @@ import com.niit.model.Forum;
 public class ForumController {
 	@Autowired
 	ForumDao forumDao;
-	@RequestMapping(value="/addQuestion",headers="Accept=application/json",method=RequestMethod.POST)
-	  public void addQuestion(@RequestBody Forum forum)
-	  {
-		 forumDao.addQuestion(forum); 
-	  }
-	@RequestMapping(value="/viewQuestions",headers="Accept=application/json",method=RequestMethod.GET)
-	  public List<Forum> viewQuestions(Forum forum)
-	  {
-		 return forumDao.viewQuestions();
-	  }
-	@RequestMapping(value="/updateQuestion",headers="Accept=application/json",method=RequestMethod.PUT)
-	public void updateQuestion(@RequestBody Forum forum)
+	@RequestMapping(value="/addForum",headers="Accept=application/json",method=RequestMethod.POST)
+	public void addForum(@RequestBody Forum forum)
 	{
-		forumDao.updateQuestion(forum);
+		/*int userId=(Integer) session.getAttribute("loggedInUserId");
+		forum.setUsersID(userId);
+		
+		System.out.println("user id inside forum is "+userId);
+		*/
+		forumDao.saveOrUpdateForum(forum);
 	}
-	@RequestMapping(value="/deleteQuestion/{id}",headers="Accept=application/json",method=RequestMethod.DELETE)
-	public void deleteQuestion(@PathVariable("id") int id)
+	@RequestMapping(value="/viewForums",headers="Accept=application/json",method=RequestMethod.GET)
+	public List<Forum> viewForums()
 	{
-		forumDao.deleteQuestion(id);
+		return forumDao.getAllForums();
 	}
-	@RequestMapping(value="/getQuestion/{id}",headers="Accept=application/json",method=RequestMethod.GET)
-	public Forum getQuestion(@PathVariable("id") int id)
+	@RequestMapping(value="/updateForum",headers="Accept=application/json",method=RequestMethod.PUT)
+	public void updateForum(@RequestBody Forum forum)
 	{
-		return forumDao.getQuestion(id);
+		System.out.println("Inside update forum");
+		forumDao.saveOrUpdateForum(forum);
 	}
+	@RequestMapping(value="/deleteForum/{id}",headers="Accept=application/json",method=RequestMethod.DELETE)
+	public void deleteForum(@PathVariable String id)
+	{
+		forumDao.delete(id);
+	}
+
 }
+
+
