@@ -27,6 +27,13 @@ letzChaat.config(function($routeProvider) {
 		templateUrl:"about.html",
 		controller:'aboutController'
 	})
+	
+	.when("/chat",
+	{
+		templateUrl:"chat.html",
+		controller:'ChatCtrl'
+	})
+	
 	.when("/404",
 	{
 		templateUrl:"404.html",
@@ -144,6 +151,7 @@ letzChaat.controller('logoutController',function($scope,$rootScope,$http)
 			$rootScope.home=true;
 			$rootScope.blog=false;
 			$rootScope.forum=false;
+			$rootScope.event=false;
 			$rootScope.jobs=false;
 			$rootScope.logout=false;
 			$rootScope.chat=false;
@@ -210,7 +218,7 @@ letzChaat.controller('loginController',['$scope','$http','$location','$rootScope
 			$rootScope.about=false;
 			$rootScope.home=false;
 			$rootScope.adminBlog=true;
-			$rootScope.users=true;
+		    $rootScope.users=true;
 			$rootScope.registeredUsers=true;
 			$rootScope.logout=true;
 			$scope.message="Welcome admin";
@@ -1045,6 +1053,23 @@ letzChaat.controller("adminForumController",function($scope,$http,$rootScope)
 		}
 
 		);
+
+
+
+/*letzChaat.controller("ChatCtrl", function($scope, ChatService) {
+	  $scope.messages = [];
+	  $scope.message = "";
+	  $scope.max = 140;
+console.log("inside chat conrll");
+	  $scope.addMessage = function() {
+	    ChatService.send($scope.message);
+	    $scope.message = "";
+	  };
+
+	  ChatService.receive().then(null, null, function(message) {
+	    $scope.messages.push(message);
+	  });
+	});*/
 
 
 
