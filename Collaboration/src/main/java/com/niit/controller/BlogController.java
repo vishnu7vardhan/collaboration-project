@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.gson.Gson;
 import com.niit.dao.BlogDao;
 import com.niit.model.Blog;
 
@@ -30,9 +31,12 @@ public class BlogController {
 		blogDao.saveOrUpdateBlog(blog);
 	}
 	@RequestMapping(value="/viewBlogs",headers="Accept=application/json",method=RequestMethod.GET)
-	public List<Blog> viewBlogs()
+	public String viewBlogs()
 	{
-		return blogDao.getAllBlogs();
+		List<Blog>  list=blogDao.getAllBlogs();
+		Gson gson=new Gson();
+		String object=gson.toJson(list);
+		return object;
 	}
 	@RequestMapping(value="/updateBlog",headers="Accept=application/json",method=RequestMethod.PUT)
 	public void updateBlog(@RequestBody Blog blog)

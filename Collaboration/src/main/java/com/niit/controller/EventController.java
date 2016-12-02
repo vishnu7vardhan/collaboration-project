@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.gson.Gson;
 import com.niit.dao.EventDao;
+import com.niit.model.Blog;
 import com.niit.model.Event;
 
 @RestController
@@ -29,9 +31,12 @@ public class EventController {
 		eventDao.saveOrUpdateEvent(event);
 	}
 	@RequestMapping(value="/viewEvents",headers="Accept=application/json",method=RequestMethod.GET)
-	public List<Event> viewEvents()
+	public String viewEvents()
 	{
-		return eventDao.getAllEvents();
+		List<Event>  list=eventDao.getAllEvents();
+		Gson gson=new Gson();
+		String object=gson.toJson(list);
+		return object;
 	}
 	@RequestMapping(value="/updateEvent",headers="Accept=application/json",method=RequestMethod.PUT)
 	public void updateEvent(@RequestBody Event event, HttpSession session)

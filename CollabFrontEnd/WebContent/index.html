@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="Collaboration" ng-init="blogitem=true;contact=true;shortcodes=true;pricing=true;portfolio=true;blog=false;users=false;adminJobs=false;adminBlog=false;jobs=false;login=true;register=true;about=true;services=true;home=true;logout=false;chat=false">
+<html ng-app="Collaboration" ng-init="blogitem=true;contact=true;shortcodes=true;pricing=true;portfolio=false;blog=false;users=false;adminJobs=false;adminBlog=false;jobs=false;login=true;register=true;about=true;services=true;home=true;logout=false;chat=false">
     <head>
         <!-- Title -->
         <title>Boss - Professional Bootstrap Template</title>
@@ -65,7 +65,7 @@
                         <div class="text-center visible-lg">
                             <ul id="hornavmenu" class="nav navbar-nav">
                                 <li>
-                                    <a href="#index" class="fa-home active">Home</a>
+                                    <a href="#" class="fa-home active">Home</a>
                                 </li>
                                 
                                  <li>
@@ -104,12 +104,22 @@
                         <li><a href="#adminJobs" class="fa-home active" ng-show="adminJobs">Admin Jobs</a></li>
                         
                       <li><a href="chat.html" class="fa-comment" ng-show="chat">chat</a></li>
-                        
-                        
-                          <li>
-                                    <a href="#logout" class="fa-home active" ng-show="logout">Logout</a>
+                 
                                 </li>
-                        
+                                
+                                <li>  <a href="#logout" class="fa-home active" ng-show="logout">Logout</a></li>
+                                
+                        <li>
+                                            <a href="#pages-about-us" class="fa-copy ">About Us</a>
+                                        </li>
+                                        <!-- <li>
+                                            <a href="#pages-services" class="fa-copy ">Services</a>
+                                        </li> -->
+                                        <li>
+                                    <a href="#contact" class="fa-comment "ng-show="contact">Contact</a>
+                                </li>
+                          <li>
+                                        
                                <!--  <li>
                                     <span class="fa-gears ">Features</span>
                                     <ul>
@@ -178,16 +188,16 @@
                                         </li>
                                     </ul>
                                 </li> -->
-                                <li>
+                                <!-- <li>
                                     <span class="fa-copy ">Pages</span>
                                     <ul>
                                         <li>
-                                            <a href="pages-about-us.html">About Us</a>
+                                            <a href="#pages-about-us">About Us</a>
                                         </li>
                                         <li>
-                                            <a href="pages-services.html">Services</a>
-                                        </li>
-                                        <li>
+                                            <a href="#pages-services">Services</a>
+                                        </li> -->
+                                        <!-- <li>
                                             <a href="pages-faq.html">F.A.Q.</a>
                                         </li>
                                         <li>
@@ -201,19 +211,19 @@
                                         </li>
                                         <li>
                                             <a href="pages-right-sidebar.html">Right Sidebar</a>
-                                        </li>
+                                        </li> -->
                                         <!-- <li>
                                             <a href="pages-login.html">Login</a>
                                         </li>
                                         <li>
                                             <a href="pages-sign-up.html">Sign-Up</a>
                                         </li> -->
-                                        <li>
-                                            <a href="pages-404.html">404 Error Page</a>
-                                        </li>
+                                        <!-- <li>
+                                            <a href="#pages-404" class="fa-copy ">404 Error Page</a>
+                                        </li> -->
                                     </ul>
                                 </li>
-                                <li>
+                               <!--  <li>
                                     <span class="fa-th ">Portfolio</span>
                                     <ul>
                                         <li>
@@ -229,7 +239,7 @@
                                             <a href="portfolio-6-column.html">6 Column</a>
                                         </li>
                                     </ul>
-                                </li>
+                                </li> -->
                                 <!-- <li>
                                     <span class="fa-font ">Blog</span>
                                     <ul>
@@ -241,9 +251,7 @@
                                         </li>
                                     </ul>
                                 </li> -->
-                                <li>
-                                    <a href="#contact" class="fa-comment ">Contact</a>
-                                </li>
+                                
                             </ul>
                         </div>
                     </div>
