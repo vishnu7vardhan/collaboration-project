@@ -1,6 +1,6 @@
 Collaboration-Project
 
-Name: Collabration portal-Evento.
+Name: Collabration portal-TalkCity.
 
 Description:It is an Collabration website,where we can access different functionalities in a common network where multiple people can access it. Readme Setup:eclipse mars version 2,Oracle database,Apache Tomcat 8.0.JDK 1.8.
 
