@@ -15,13 +15,10 @@
         <th>forumId</th>
         <th>name</th>
         <th>topic</th>
-         <th>description</th>
+         <th>content</th>
           <th>userID</th>
           <th>dateOfCreation</th>
-          <th>Edit</th>
           <th>Delete</th>
-             <th>Approve</th>
-          <th>disapprove</th>
       </tr>
     </thead>
     <tbody>
@@ -29,20 +26,12 @@
        <td>{{forum.forumId}}</td>
         <td>{{forum.name}}</td>
         <td>{{forum.topic}}</td>
-        <td>{{forum.description}}</td>
-        <td>{{forum.userID}}</td>
+        <td>{{forum.content}}</td>
+        <td>{{forum.usersID}}</td>
          <td>{{forum.dateOfCreation}}</td>
-         
-         
-         
-         <td><button type="button" class="btn btn-primary btn-sm "  data-toggle="modal" data-target="#editforum" ng-click="editForum(forum)">Edit</button></td>
-         <td><button type="button" class="btn btn-danger btn-sm " data-toggle="modal" data-target="#deleteforum" ng-click="editForum(forum)">Delete </button></td>
-      
-         
-         
-       <td><button type="button" class="btn btn-primary btn-sm "  data-toggle="modal" data-target="#editforum" ng-click="editForum(forum)">Approve</button></td>
-         <td><button type="button" class="btn btn-danger btn-sm " data-toggle="modal" data-target="#deleteforum" ng-click="editForum(forum)">Disapprove</button></td>
-      </tr>
+       
+         <td><button type="button" class="btn btn-danger btn-sm " data-toggle="modal" data-target="#deleteforum" ng-click="editForum(forum)">Delete </button></td>  
+             </tr>
        </tbody>
   </table>
   
@@ -85,43 +74,11 @@
   
   
     <div class="form-group">
-    <label class="control-label col-sm-2" for="description">description: </label>
+    <label class="control-label col-sm-2" for="content">content: </label>
     <div class="col-sm-10"> 
-    <input type="text" class="form-control" name="description" placeholder="description" required="" autofocus=""  ng-model="description"/>
+    <input type="text" class="form-control" name="content" placeholder="content" required="" autofocus=""  ng-model="content"/>
    </div>
   </div>
-   
-  
-  
-  
-  <div class="form-group">
-    <label class="control-label col-sm-2" for="userID">userID: </label>
-    <div class="col-sm-10"> 
-    <input type="text" class="form-control" name="userID" placeholder="userID" required="" autofocus=""  ng-model="userID"/>
-   </div>
-  </div>
-  
-  
-  
-  <div class="form-group">
-    <label class="control-label col-sm-2" for="dateOfCreation">dateOfCreation: </label>
-    <div class="col-sm-10"> 
-    <input type="date" class="form-control" name="dateOfCreation" placeholder="dateOfCreation" required="" autofocus=""  ng-model="dateOfCreation"/>
-   </div>
-  </div>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   
   
   <div class="form-group"> 
@@ -169,18 +126,18 @@
     </div>
   </div>
   <div class="form-group">
-    <label class="control-label col-sm-2" for="description">description:</label>
+    <label class="control-label col-sm-2" for="content">description:</label>
     <div class="col-sm-10"> 
-      <input type="text" class="form-control" id="description" ng-model="forumDataToEdit.description">
+      <input type="text" class="form-control" id="content" ng-model="forumDataToEdit.content">
     </div>
   </div>
   
   
   
    <div class="form-group">
-    <label class="control-label col-sm-2" for="userID">userID:</label>
+    <label class="control-label col-sm-2" for="usersID">usersID:</label>
     <div class="col-sm-10"> 
-      <input type="text" class="form-control" id="userID" ng-model="forumDataToEdit.userID">
+      <input type="text" class="form-control" id="usersID" ng-model="forumDataToEdit.usersID">
     </div>
   </div>
  

@@ -1,5 +1,7 @@
 package com.niit.test;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -29,8 +31,38 @@ public class BlogTest {
 		blog.setBlogId("BLOG_001");
 		blog.setContent("Content");
 		blog.setDateOfCreation(new Date());
+		
+				// Create an instance of SimpleDateFormat used for formatting 
+				// the string representation of date (month/day/year)
+				//DateFormat df = new SimpleDateFormat("medium");
+				
+				//DateFormat df = DateFormat.getDateInstance(DateFormat.LONG);
+				
+		
+		
+				DateFormat df = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss");
+		
+		
+		
+		
+		
+		
+				//myString = DateFormat.getDateInstance().format(myDate);
+				
+				// Get the date today using Calendar object.
+				Date today = new Date();        
+				// Using DateFormat format method we can create a string 
+				// representation of a date with the defined format.
+				String reportDate = df.format(today);
+
+				// Print what date is today!
+				System.out.println("Report Date: " + reportDate);
+				
+				
+		blog.setBlogCreationDate(reportDate);
+		
 		blog.setTitle("title");
-	//	blog.setUsersID("USER_001");
+		blog.setUsersID(389);
 		blog.setApproved(0);
 		blog.setCategory("this is category");
 		blogDAO.saveOrUpdateBlog(blog);

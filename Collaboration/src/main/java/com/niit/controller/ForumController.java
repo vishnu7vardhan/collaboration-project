@@ -1,5 +1,8 @@
 package com.niit.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -21,23 +24,25 @@ public class ForumController {
 	@Autowired
 	ForumDao forumDao;
 	@RequestMapping(value="/addForum",headers="Accept=application/json",method=RequestMethod.POST)
-	public void addForum(@RequestBody Forum forum)
+	public void addForum(@RequestBody Forum forum,HttpSession session)
 	{
-		/*int userId=(Integer) session.getAttribute("loggedInUserId");
+		int userId=(Integer) session.getAttribute("loggedInUserId");
 		forum.setUsersID(userId);
+		DateFormat df = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss");
+		Date today = new Date();        
+		String reportDate = df.format(today);
+		System.out.println("Report Date: " + reportDate);
+		
+		
+		forum.setDateOfCreation(reportDate);
+		
 		
 		System.out.println("user id inside forum is "+userId);
-		*/
+		
+		
 		forumDao.saveOrUpdateForum(forum);
 	}
-	@RequestMapping(value="/viewForums",headers="Accept=application/json",method=RequestMethod.GET)
-	public String viewForums()
-	{
-		List<Forum>  list=forumDao.getAllForums();
-		Gson gson=new Gson();
-		String object=gson.toJson(list);
-		return object;
-	}
+	
 	@RequestMapping(value="/updateForum",headers="Accept=application/json",method=RequestMethod.PUT)
 	public void updateForum(@RequestBody Forum forum)
 	{
@@ -49,7 +54,18 @@ public class ForumController {
 	{
 		forumDao.delete(id);
 	}
-
+	@RequestMapping(value="/viewForums",headers="Accept=application/json",method=RequestMethod.GET)
+	public String viewForums()
+	{
+		
+		List<Forum> list= forumDao.getAllForums();
+		
+		Gson gson= new Gson();
+		String object;
+		object=gson.toJson(list);
+		
+		return object;
+	}
 }
 
 

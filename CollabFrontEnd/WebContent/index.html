@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="Collaboration" ng-init="blogitem=true;contact=true;shortcodes=true;pricing=true;portfolio=false;blog=false;users=false;adminJobs=false;adminBlog=false;jobs=false;login=true;register=true;about=true;services=true;home=true;logout=false;chat=false">
+<html ng-app="Collaboration" ng-init="blogitem=true;contact=true;shortcodes=true;pricing=true;portfolio=false;blog=false;users=false;adminJobs=false;adminBlog=false;jobs=false;login=true;register=true;about=true;services=true;home=true;logout=false;chat=false;friends=false">
     <head>
         <!-- Title -->
         <title>Boss - Professional Bootstrap Template</title>
@@ -54,8 +54,8 @@
                     <!-- Logo -->
                     <div class="logo">
                         <a href="index.html" title="">
-<!--                             <img src="assets/img/logo.png" alt="Logo" />
- -->                        </a>
+                            <img src="assets/img/talkcity.gif" alt="Logo" />
+                        </a>
                     </div>
                     <!-- End Logo -->
                 </div>
@@ -107,152 +107,25 @@
                  
                                 </li>
                                 
+                                <li class="dropdown" ng-show="logout">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Friends <i class="fa fa-angle-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#friends">Friends</a></li>
+                                <li><a href="#friendsRequests">friendsRequests</a></li>
+                              	<li><a href="#myFriends">myFriends</a></li>
+                                 <!--  <li><a href="#shortcodes" >Shortcodes</a></li> -->
+                            </ul>
+                        </li>
+                                
+                                
                                 <li>  <a href="#logout" class="fa-home active" ng-show="logout">Logout</a></li>
                                 
                         <li>
                                             <a href="#pages-about-us" class="fa-copy ">About Us</a>
                                         </li>
-                                        <!-- <li>
-                                            <a href="#pages-services" class="fa-copy ">Services</a>
-                                        </li> -->
-                                        <li>
-                                    <a href="#contact" class="fa-comment "ng-show="contact">Contact</a>
-                                </li>
-                          <li>
-                                        
-                               <!--  <li>
-                                    <span class="fa-gears ">Features</span>
-                                    <ul>
-                                        <li class="parent">
-                                            <span>Typography</span>
-                                            <ul>
-                                                <li>
-                                                    <a href="features-typo-basic.html">Basic Typography</a>
-                                                </li>
-                                                <li>
-                                                    <a href="features-typo-blockquotes.html">Blockquotes</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="parent">
-                                            <span>Components</span>
-                                            <ul>
-                                                <li>
-                                                    <a href="features-labels.html">Labels</a>
-                                                </li>
-                                                <li>
-                                                    <a href="features-progress-bars.html">Progress Bars</a>
-                                                </li>
-                                                <li>
-                                                    <a href="features-panels.html">Panels</a>
-                                                </li>
-                                                <li>
-                                                    <a href="features-pagination.html">Pagination</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="parent">
-                                            <span>Icons</span>
-                                            <ul>
-                                                <li>
-                                                    <a href="features-icons.html">Icons General</a>
-                                                </li>
-                                                <li>
-                                                    <a href="features-icons-social.html">Social Icons</a>
-                                                </li>
-                                                <li>
-                                                    <a href="features-icons-font-awesome.html">Font Awesome</a>
-                                                </li>
-                                                <li>
-                                                    <a href="features-icons-glyphicons.html">Glyphicons</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="features-testimonials.html">Testimonials</a>
-                                        </li>
-                                        <li>
-                                            <a href="features-accordions-tabs.html">Accordions & Tabs</a>
-                                        </li>
-                                        <li>
-                                            <a href="features-buttons.html">Buttons</a>
-                                        </li>
-                                        <li>
-                                            <a href="features-carousels.html">Carousels</a>
-                                        </li>
-                                        <li>
-                                            <a href="features-grid.html">Grid System</a>
-                                        </li>
-                                        <li>
-                                            <a href="features-animate-on-scroll.html">Animate On Scroll</a>
-                                        </li>
-                                    </ul>
-                                </li> -->
-                                <!-- <li>
-                                    <span class="fa-copy ">Pages</span>
-                                    <ul>
-                                        <li>
-                                            <a href="#pages-about-us">About Us</a>
-                                        </li>
-                                        <li>
-                                            <a href="#pages-services">Services</a>
-                                        </li> -->
-                                        <!-- <li>
-                                            <a href="pages-faq.html">F.A.Q.</a>
-                                        </li>
-                                        <li>
-                                            <a href="pages-about-me.html">About Me</a>
-                                        </li>
-                                        <li>
-                                            <a href="pages-full-width.html">Full Width</a>
-                                        </li>
-                                        <li>
-                                            <a href="pages-left-sidebar.html">Left Sidebar</a>
-                                        </li>
-                                        <li>
-                                            <a href="pages-right-sidebar.html">Right Sidebar</a>
-                                        </li> -->
-                                        <!-- <li>
-                                            <a href="pages-login.html">Login</a>
-                                        </li>
-                                        <li>
-                                            <a href="pages-sign-up.html">Sign-Up</a>
-                                        </li> -->
-                                        <!-- <li>
-                                            <a href="#pages-404" class="fa-copy ">404 Error Page</a>
-                                        </li> -->
-                                    </ul>
-                                </li>
-                               <!--  <li>
-                                    <span class="fa-th ">Portfolio</span>
-                                    <ul>
-                                        <li>
-                                            <a href="portfolio-2-column.html">2 Column</a>
-                                        </li>
-                                        <li>
-                                            <a href="portfolio-3-column.html">3 Column</a>
-                                        </li>
-                                        <li>
-                                            <a href="portfolio-4-column.html">4 Column</a>
-                                        </li>
-                                        <li>
-                                            <a href="portfolio-6-column.html">6 Column</a>
-                                        </li>
-                                    </ul>
-                                </li> -->
-                                <!-- <li>
-                                    <span class="fa-font ">Blog</span>
-                                    <ul>
-                                        <li>
-                                            <a href="blog-list.html">Blog</a>
-                                        </li>
-                                        <li>
-                                            <a href="blog-single.html">Blog Single Item</a>
-                                        </li>
-                                    </ul>
-                                </li> -->
+                                       
                                 
-                            </ul>
+                            
                         </div>
                     </div>
                 </div>
@@ -278,7 +151,7 @@
         
         
         
-        
+   
         
          <!-- === BEGIN FOOTER === -->
         <div id="base" class="background-dark text-light">
@@ -286,83 +159,41 @@
                 <div class="row">
                     <!-- Disclaimer -->
                     <div class="col-md-6 margin-bottom-30">
-                        <h3 class="margin-bottom-10">Disclaimer</h3>
-                        <p>All stock images on this template demo are for presentation purposes only, intended to represent a live site and are not included with the template or in any of the Joomla51 club membership plans.</p>
-                        <p>Dribbble images are property of their respective owners. All other images are freely available from
-                            <a class="nobold" href="http://www.unsplash.com/" target="_blank">Unsplash</a>.</p>
-                    </div>
+                        <h3 class="margin-bottom-10">About Us</h3>
+                        <p>This is a collaboration Project with backend and frontend with Maven, RESTful API, Bootstrap, HTML, CSS, JS, AngularJS, Oracle, Tomcat webserver.</p>
+<!--                             <a class="nobold" href="http://www.unsplash.com/" target="_blank">Unsplash</a>.</p>
+ -->                    </div>
                     <!-- End Disclaimer -->
                     <!-- Image Credits -->
                     <div class="col-sm-6 col-md-3 margin-bottom-30">
-                        <h3 class="margin-bottom-10">Image Credits</h3>
+                    
+ <img src="assets/img/contact.jpg" alt="contact" align="left" style="width:340px;height:228px;">
+                    
+                        <h3 class="margin-bottom-10">Address</h3>
                         <ul class="menu">
                             <li>
-                                <a href="http://www.coffeeandplaid.com/" target="_blank">Coffee & Plaid</a>
+                            NIIT
+                            Jayanagar 3rd Block
                             </li>
                             <li>
-                                <a href="https://dribbble.com/OMFGdesign" target="_blank">Olly Freeman</a>
+                             phone number:9985574283
+                             Email:vardhanvishnu126@gmail.com
+                             
                             </li>
-                            <li>
-                                <a href="https://dribbble.com/artnok" target="_blank">Niko Picard</a>
-                            </li>
-                            <li>
-                                <a href="https://dribbble.com/forsuregraphic" target="_blank">Forsuregraphic</a>
-                            </li>
-                            <li>
-                                <a href="https://www.unsplash.com" target="_blank">Unsplash</a>
-                            </li>
-                        </ul>
-                        <div class="clearfix"></div>
-                    </div>
-                    <!-- End Image Credits -->
-                    <!-- Friends -->
-                    <div class="col-sm-6 col-md-3 margin-bottom-30">
-                        <h3 class="margin-bottom-10">Friends</h3>
-                        <ul class="menu">
-                            <li>
-                                <a href="#">Amanda Allen</a>
-                            </li>
-                            <li>
-                                <a href="#">John Adams</a>
-                            </li>
-                            <li>
-                                <a href="#">Mark Sanchez</a>
-                            </li>
-                            <li>
-                                <a href="#">Diane Reed</a>
-                            </li>
-                        </ul>
-                        <div class="clearfix"></div>
-                    </div>
-                    <!-- End Friends -->
+
                 </div>
             </div>
         </div>
-        <!-- Footer -->
+        <!-- <!-- Footer -->
         <div id="footer" class="background-dark text-light">
             <div class="container no-padding">
                 <div class="row">
-                    <!-- Footer Menu -->
-                    <div id="footermenu" class="col-md-8">
-                        <ul class="list-unstyled list-inline">
-                            <li>
-                                <a href="#" target="_blank">Sample Link</a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank">Sample Link</a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank">Sample Link</a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank">Sample Link</a>
-                            </li>
-                        </ul>
-                    </div>
+                    
+                   
                     <!-- End Footer Menu -->
                     <!-- Copyright -->
                     <div id="copyright" class="col-md-4">
-                        <p class="pull-right">(c) 2014 Your Copyright Info</p>
+                        <p class="pull-right">(c) 2016 Your Copyright Info</p>
                     </div>
                     <!-- End Copyright -->
                 </div>

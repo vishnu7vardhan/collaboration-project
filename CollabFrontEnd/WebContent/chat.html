@@ -1,36 +1,47 @@
+Chat Page
+
 <head>
 <style>
 body  {
     background-image: url("assets/img/download.jpg");
     background-color: #00cccccc;
 }
+p.obs {
+    font-style: oblique;
+    color: blue;
+    
+}
+
 </style>
 </head>
 
 <body ng-app="Collaboration">
 <br>
-<div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+<!-- <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
                 <ul class="nav navbar-nav">
                     
                     <li>
                         <a href="home" data-toggle="tooltip" data-placement="left" title="GO TO HOME!"><span class="glyphicon glyphicon-home"></span></a>
                     </li>
                 </ul>
-</div>
+</div> -->
 <br><br><br><br>
 
 	<div ng-controller="ChatCtrl" class="container">
       <form ng-submit="addMessage()" name="messageForm">
         <input type="text" placeholder="Send a message..." ng-model="message" />
         <div class="info">
-          <span class="count" ng-bind="max - message.length" ng-class="{danger: message.length > max}">140</span>
+          <span class="count" class="form-control" ng-bind="max - message.length" ng-class="{danger: message.length > max}">140</span>
           <br><br>
-      
-          <button ng-disabled="message.length > max || message.length === 0">Send</button>
+      <div class="row margin-bottom-20">
+                                <div class="col-md-6 col-md-offset-0">
+          <button type="submit" class="btn btn-primary" ng-disabled="message.length > max || message.length === 0">Send</button>
+        </div>
+        </div>
         </div>
       </form>
       <hr />
-      <p ng-repeat="message in messages | orderBy:'time':true" class="message">
+      <p ng-repeat="message in messages | orderBy:'time':true" class="obs">
       	<span>{{message.username}}</span>
         <time>{{message.time | date:'HH:mm'}}</time>
         <span ng-class="{self: message.self}">{{message.message}}</span>
@@ -44,4 +55,23 @@ body  {
     <script src="assets/js/app.js" type="text/javascript"></script>
     <script src="assets/js/controllers.js" type="text/javascript"></script>
     <script src="assets/js/services.js" type="text/javascript"></script>
+    
+    
+    <script type="text/javascript" src="assets/js/jquery.min.js" type="text/javascript"></script>
+            <script type="text/javascript" src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+            <script type="text/javascript" src="assets/js/scripts.js"></script>
+            <!-- Isotope - Portfolio Sorting -->
+            <script type="text/javascript" src="assets/js/jquery.isotope.js" type="text/javascript"></script>
+            <!-- Mobile Menu - Slicknav -->
+            <script type="text/javascript" src="assets/js/jquery.slicknav.js" type="text/javascript"></script>
+            <!-- Animate on Scroll-->
+            <script type="text/javascript" src="assets/js/jquery.visible.js" charset="utf-8"></script>
+            <!-- Stellar Parallax -->
+            <script type="text/javascript" src="assets/js/jquery.stellar.js" charset="utf-8"></script>
+            <!-- Sticky Div -->
+            <script type="text/javascript" src="assets/js/jquery.sticky.js" charset="utf-8"></script>
+            <!-- Slimbox2-->
+            <script type="text/javascript" src="assets/js/slimbox2.js" charset="utf-8"></script>
+            <!-- Modernizr -->
+            <script src="assets/js/modernizr.custom.js" type="text/javascript"></script>
     </body>

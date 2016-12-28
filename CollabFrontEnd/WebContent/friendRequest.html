@@ -1,0 +1,57 @@
+
+</br>
+</br>
+ <div class="container">
+
+     <p>
+     <p>
+     <p>
+     <p>
+     
+     <p>
+     <p>
+     <p>
+     <p>
+     
+     <div class="form-group has-feedback"></div>
+     
+     Search 
+
+     <input type="text" ng-model="sear_text">
+     
+     
+         <div ng-repeat="user in users | filter: sear_text">
+         
+             <fieldset>
+             
+                   
+                  <!--  <p>User Name: {{user.userID}} &nbsp; &nbsp; &nbsp;
+                      &nbsp; &nbsp; &nbsp;   -->
+                      <button type="button" ng-click="acceptRequest(user)" 
+                                                        
+                       class="btn btn-warning btn-sm">Accept Request</button>
+                       
+                          &nbsp; &nbsp; &nbsp;  
+                        <button type="button" ng-click="rejectRequest(user)" 
+                                                        
+                       class="btn btn-warning btn-sm">Reject Request</button>
+                       
+                    </p>
+                    
+                   <p>Friend name: {{user.userID}} &nbsp; &nbsp; &nbsp; Status:{{user.status}}</p>
+                   
+                   <p>is Online :{{user.isOnline}} &nbsp; &nbsp; &nbsp;</p>
+                </fieldset>
+                
+                
+               
+                
+                
+             </div>
+          
+          </div>
+          
+          </br>
+          </br>
+          </br>
+          

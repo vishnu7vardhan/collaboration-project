@@ -20,9 +20,20 @@ public class Forum {
 		private String topic;
 		private String content;
 		private int usersID;
-		private Date dateOfCreation;
+		private String dateOfCreation;
 		
-	
+		
+		
+		
+
+		public String getDateOfCreation() {
+			return dateOfCreation;
+		}
+
+		public void setDateOfCreation(String dateOfCreation) {
+			this.dateOfCreation = dateOfCreation;
+		}
+
 		public String getForumId() {
 			return forumId;
 		}
@@ -55,14 +66,7 @@ public class Forum {
 			this.usersID = usersID;
 		}
 
-		public Date getDateOfCreation() {
-			return dateOfCreation;
-		}
-
-		public void setDateOfCreation(Date dateOfCreation) {
-			this.dateOfCreation = dateOfCreation;
-		}
-
+	
 		public String getErrorCode() {
 			return errorCode;
 		}
@@ -89,10 +93,7 @@ public class Forum {
 		}
 		@Transient
 		private String errorMessage;
-	
-		
-		
-		
+
 
 		
 }
